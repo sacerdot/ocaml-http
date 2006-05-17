@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Stefano Zacchiroli <zack@debian.org>
 Build-Depends: debhelper (>> 4.0.0), ocaml-nox (>= @OCamlABI@), ocaml-findlib (>= 1.1), libpcre-ocaml-dev (>= 5.10.1-2), libocamlnet-ocaml-dev (>= 1.1-8), cdbs
-Standards-Version: 3.6.2
+Standards-Version: 3.7.2
 
 Package: libhttp-ocaml-dev
 Architecture: any

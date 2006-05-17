@@ -1,3 +1,11 @@
+ocaml-http (0.1.2-4) unstable; urgency=low
+
+  * Rebuilt against ocaml 3.09.2, bumped deps accordingly.
+  * debian/control
+    - Bumped Standards-Version to 3.7.2 (no changes needed)
+
+ -- Stefano Zacchiroli <zack@debian.org>  Wed, 17 May 2006 05:18:32 +0000
+
 ocaml-http (0.1.2-3) unstable; urgency=low
 
   * Rebuilt against OCaml 3.09.1, bumped deps accordingly.

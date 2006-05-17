@@ -117,8 +117,7 @@ distreal: distdoc distclean depend
 	do	\
 		cp -r $$f $(DISTDIR)/;	\
 	done
-	-find $(DISTDIR)/ -type d -name CVS -exec rm -rf {} \;
-	-find $(DISTDIR)/ -type f -name ".cvs*" -exec rm -f {} \;
+	-find $(DISTDIR)/ -type d -name .svn -exec rm -rf {} \;
 	tar cvzf $(DISTDIR).tar.gz $(DISTDIR)/
 distrm:
 	rm -rf $(DISTDIR)/
