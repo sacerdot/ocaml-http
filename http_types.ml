@@ -215,5 +215,6 @@ type daemon_spec = {
   root_dir: string option;
   exn_handler: (exn -> out_channel -> unit) option;
   timeout: int option;
+  auto_close: bool;
 }
 

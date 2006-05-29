@@ -297,67 +297,28 @@ let server_of_mode = function
   callbacks keep on living until the end or are them all killed immediatly?
   The right semantics should obviously be the first one *)
 
-let handle_manual_auth outchan f =
-  try
-    f ()
-  with
-  | Unauthorized realm -> respond_unauthorized ~realm outchan
-  | Again -> ()
-
-let handle_auth req spec outchan =
+  (** - handle HTTP authentication
+   *  - handle automatic closures of client connections *)
+let invoke_callback req spec outchan =
+  let callback req outchan =
+    if spec.auto_close then
+      Http_misc.finally
+        (fun () -> try close_out outchan with Sys_error _ -> ())
+        (fun () -> spec.callback req outchan) ()
+    else
+      spec.callback req outchan in
   try
     (match (spec.auth, req#authorization) with
-    | None, _ -> spec.callback req outchan  (* no auth required *)
+    | None, _ -> callback req outchan  (* no auth required *)
     | Some (realm, `Basic (spec_username, spec_password)),
       Some (`Basic (username, password))
       when (username = spec_username) && (password = spec_password) ->
         (* auth ok *)
-        spec.callback req outchan
+        callback req outchan
     | Some (realm, _), _ -> raise (Unauthorized realm)) (* auth failure *)
   with
   | Unauthorized realm -> respond_unauthorized ~realm outchan
   | Again -> ()
-
-  (* TODO support also chroot to 'root', not only chdir *)
-  (* TODO deprecated: remove from future versions *)
-  (* curried request *)
-let start
-  ?(addr = default_addr) ?(port = default_port)
-  ?(timeout = default_timeout) ?(mode = default_mode) ?root callback
-  =
-  Http_misc.warn
-    "Http_daemon.start is deprecated in favour of Http_daemon.main and will be removed in future versions of the library";
-  chdir_to_document_root root;
-  let sockaddr = Http_misc.build_sockaddr (addr, port) in
-  let daemon_callback inchan outchan =
-    handle_manual_auth outchan (fun () ->
-      let (path, parameters) = safe_parse_request inchan outchan in
-      callback path parameters outchan;
-      flush outchan);
-  in
-  try
-    (server_of_mode mode) ~sockaddr ~timeout daemon_callback 
-  with Quit -> ()
-
-  (* OO request *)
-  (* TODO deprecated: remove from future versions *)
-let start'
-  ?(addr = default_addr) ?(port = default_port)
-  ?(timeout = default_timeout) ?(mode = default_mode) ?root callback
-=
-  Http_misc.warn
-    "Http_daemon.start' is deprecated in favour of Http_daemon.main and will be removed in future versions of the library";
-  chdir_to_document_root root;
-  let sockaddr = Http_misc.build_sockaddr (addr, port) in
-  let daemon_callback inchan outchan =
-    handle_manual_auth outchan (fun () ->
-      let req = safe_parse_request' inchan outchan in
-      callback req outchan;
-      flush outchan)
-  in
-  try
-    (server_of_mode mode) ~sockaddr ~timeout daemon_callback 
-  with Quit -> ()
 
 let main spec =
   chdir_to_document_root spec.root_dir;
@@ -371,7 +332,7 @@ let main spec =
       match next_req () with
       | Some req ->
           debug_print (sprintf "request #%d" n);
-          handle_auth req spec outchan;
+          invoke_callback req spec outchan;
           flush outchan;
           loop (n + 1)
       | None ->
@@ -473,6 +434,7 @@ open Http_constants
 let default_spec = {
   address = default_addr;
   auth = default_auth;
+  auto_close = default_auto_close;
   callback = default_callback;
   mode = default_mode;
   port = default_port;
@@ -483,6 +445,7 @@ let default_spec = {
 
 let daemon_spec
   ?(address = default_addr) ?(auth = default_auth)
+  ?(auto_close = default_auto_close)
   ?(callback = default_callback) ?(mode = default_mode) ?(port = default_port)
   ?(root_dir = default_root_dir) ?(exn_handler = default_exn_handler)
   ?(timeout = default_timeout)

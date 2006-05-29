@@ -418,6 +418,10 @@ type daemon_spec = {
     (** timeout in seconds after which an incoming HTTP request will be
     * terminated closing the corresponding TCP connection; None disable the
     * timeout *)
+  auto_close: bool;
+    (** whether ocaml-http will automatically close the connection with the
+     * client after callback has completed its execution. If set to true, close
+     * will be attempted no matter if the callback raises an exception or not *)
 }
 
   (** {2 OO representation of other HTTP entities} *)

@@ -120,7 +120,8 @@ val main: Http_types.daemon_spec -> unit
   * - do not change to a root directory (i.e. keep cwd)
   * - 300 seconds timeout
   * - ignores exceptions
-  * - no authentication required *)
+  * - no authentication required
+  * - do not automatically close client connections after callback *)
 val default_spec: Http_types.daemon_spec
 
   (** currified daemon_spec constructor. Each parameter of this function
@@ -129,6 +130,7 @@ val default_spec: Http_types.daemon_spec
 val daemon_spec:
   ?address:string ->
   ?auth:(string * Http_types.auth_info) option ->
+  ?auto_close:bool ->
   ?callback:(Http_types.request -> out_channel -> unit) ->
   ?mode:(Http_types.daemon_mode) ->
   ?port:int ->
@@ -138,46 +140,25 @@ val daemon_spec:
   unit ->
     Http_types.daemon_spec
 
-  (** starts an HTTP daemon (deprecated function)
-  *
-  * @deprecated This function will be removed in future versions, please switch
-  * to Http_daemon.main below.
-  *
-  * see {!Http_types.daemon_spec} for a detailed description of parameters
-  *
-  * @param addr like the "address" field of Http_types.daemon_spec, defaults to
-  *   the wildcard address "0.0.0.0"
-  * @param port like the "port" field of Http_types.daemon_spec, defaults to 80
-  * @param timeout like the "timeout" field of Http_types.daemon_spec, defaults
-  *   to Some 300
-  * @param mode like the "mode" field of Http_types.daemon_spec, defaults to
-  *   `Fork
-  * @param root like the "root_dir" field of Http_types.daemon_spec, defaults to
-  *   None
-  * @param callback functional version of the "callback" field of
-  *   Http_types.daemon_spec. 1st argument is the request path, 2nd argument
-  *   the decoded query string, 3rd argument an output channel connect to the
-  *   client
-  *)
+(*
+(** XXX
+ * This function has been deprecated for a while. Now it has been removed! *)
 val start:
   ?addr: string -> ?port: int ->
   ?timeout: int option -> ?mode: Http_types.daemon_mode -> ?root: string ->
   (string -> (string * string) list -> out_channel -> unit) ->
     unit
+*)
 
-  (** starts an HTTP daemon (deprecated function)
-  *
-  * @deprecated This function will be removed in future versions, please switch
-  *   to Http_daemon.main below.
-  *
-  * parameters as per {!Http_daemon.start} except for the callback, in this case
-  * it behaves as the "callback" field of Http_types.daemon_spec
-  *)
+(*
+(** XXX
+ * This function has been deprecated for a while. Now it has been removed! *)
 val start':
   ?addr: string -> ?port: int ->
   ?timeout: int option -> ?mode: Http_types.daemon_mode -> ?root: string -> 
   (Http_types.request -> out_channel -> unit) ->
     unit
+*)
 
   (** Object oriented interface to HTTP daemons.
   * @param addr address on which daemon will listen for connections

@@ -34,6 +34,7 @@ val crlf: string
 
 val default_addr: string
 val default_auth: (string * Http_types.auth_info) option
+val default_auto_close: bool
 val default_callback: Http_types.request -> out_channel -> unit
 val default_mode: Http_types.daemon_mode
 val default_port: int
