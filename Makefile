@@ -1,4 +1,5 @@
 include Makefile.defs
+export SHELL=/bin/bash
 
 MODULES = \
 	http_constants http_types http_parser_sanity http_misc http_common \
