@@ -144,3 +144,11 @@ let list_assoc_all key pairs =
 let warn msg  = prerr_endline (sprintf "ocaml-http WARNING: %s" msg)
 let error msg = prerr_endline (sprintf "ocaml-http ERROR:   %s" msg)
 
+let finally at_end f arg =
+  let res =
+    try f arg
+    with exn -> at_end (); raise exn
+  in
+  at_end ();
+  res
+

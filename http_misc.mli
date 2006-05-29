@@ -86,3 +86,9 @@ val list_assoc_all: 'a -> ('a * 'b) list -> 'b list
 val warn: string -> unit (** print a warning msg to stderr. Adds trailing \n *)
 val error: string -> unit (** print an error msg to stderr. Adds trailing \n *)
 
+  (** @param finalizer finalization function (execution both in case of success
+   * and in case of raised exception
+   * @param f function to be invoked
+   * @param arg argument to be passed to function *)
+val finally: (unit -> unit) -> ('a -> 'b) -> 'a -> 'b
+
