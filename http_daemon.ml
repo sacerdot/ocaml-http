@@ -454,6 +454,7 @@ let daemon_spec
   { default_spec with
       address = address;
       auth = auth;
+      auto_close = auto_close;
       callback = callback;
       mode = mode;
       port = port;
