@@ -303,7 +303,15 @@ let invoke_callback req spec outchan =
   let callback req outchan =
     if spec.auto_close then
       Http_misc.finally
-        (fun () -> try close_out outchan with Sys_error _ -> ())
+        (fun () ->
+          (* XXX the pair flush + shutdown is a temporary solution since double
+           * close on a socket make ocaml 3.09.2 segfault (see
+           * http://caml.inria.fr/mantis/view.php?id=4059). The right thing to
+           * do is probably invoke try_close outchan here *)
+          flush outchan;
+          try
+            Unix.shutdown (Unix.descr_of_out_channel outchan) Unix.SHUTDOWN_ALL
+          with Unix.Unix_error(_, "shutdown", "") -> ())
         (fun () -> spec.callback req outchan) ()
     else
       spec.callback req outchan in
