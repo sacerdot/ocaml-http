@@ -6,17 +6,15 @@ PKGNAME = libhttp-ocaml-dev
 
 OCAMLABI := $(shell ocamlc -version)
 OCAMLLIBDIR := $(shell ocamlc -where)
-OFILES_ALL := $(patsubst %.in,%,$(shell ls debian/*.in))
-OFILES := $(filter-out debian/rules, $(OFILES_ALL))
+OFILES := $(filter-out debian/control,$(patsubst %.in,%,$(wildcard debian/*.in)))
 HAVE_OCAMLOPT := $(shell test -x /usr/bin/ocamlopt && echo "yes")
 DEB_DH_GENCONTROL_ARGS = -- -VF:OCamlABI="$(OCAMLABI)"
-DEB_MAKE_INSTALL_TARGET = install DESTDIR=$(CURDIR)/debian/$(PKGNAME)$(OCAMLLIBDIR)
 
 ocamlinit:
-	for f in $(OFILES_ALL); do sed -e 's/@OCamlABI@/$(OCAMLABI)/g' $$f.in > $$f; done
-
-makebuilddir/$(PKGNAME)::
 	for f in $(OFILES); do sed -e 's/@OCamlABI@/$(OCAMLABI)/g' $$f.in > $$f; done
+makebuilddir/$(PKGNAME):: ocamlinit
+
+DEB_MAKE_INSTALL_TARGET = install DESTDIR=$(CURDIR)/debian/$(PKGNAME)$(OCAMLLIBDIR)
 
 ifeq ($(HAVE_OCAMLOPT),yes)
 build/$(PKGNAME)::
