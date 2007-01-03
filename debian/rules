@@ -5,9 +5,9 @@ include /usr/share/cdbs/1/class/ocaml.mk
 
 PKGNAME = libhttp-ocaml-dev
 
-DEB_MAKE_INSTALL_TARGET = install DESTDIR=$(CURDIR)/debian/$(PKGNAME)$(OCAML_STDLIB_DIR)
-
-ifeq ($(HAVE_OCAMLOPT),yes)
-build/$(PKGNAME)::
-	$(MAKE) opt
+DEB_MAKE_BUILD_TARGET = all
+ifeq ($(OCAML_HAVE_OCAMLOPT),yes)
+DEB_MAKE_BUILD_TARGET += opt
 endif
+
+DEB_MAKE_INSTALL_TARGET = install DESTDIR=$(CURDIR)/debian/$(PKGNAME)$(OCAML_STDLIB_DIR)
