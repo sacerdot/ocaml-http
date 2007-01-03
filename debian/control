@@ -2,12 +2,12 @@ Source: ocaml-http
 Section: devel
 Priority: optional
 Maintainer: Stefano Zacchiroli <zack@debian.org>
-Build-Depends: debhelper (>> 4.0.0), ocaml-nox (>= 3.09.3), ocaml-findlib (>= 1.1), libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 1.1-12), cdbs
+Build-Depends: debhelper (>> 5.0.0), cdbs, ocaml-nox (>= 3.09.2-7), ocaml-findlib (>= 1.1), libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 2.2)
 Standards-Version: 3.7.2
 
 Package: libhttp-ocaml-dev
 Architecture: any
-Depends: ocaml-nox-${F:OCamlABI}, libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 1.1-12)
+Depends: ocaml-nox-${F:OCamlABI}, libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 2.2)
 Description: OCaml library for writing HTTP servers
  OCaml HTTP is a library for the Objective Caml programming language,
  used to build simple HTTP servers, largely inspired to Perl's
