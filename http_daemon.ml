@@ -36,6 +36,7 @@ let send_raw ~data outchan =
 let send_CRLF = send_raw ~data:crlf
 
 let send_header ~header ~value =
+  let header = String.lowercase header in
   Http_parser_sanity.heal_header (header, value);
   send_raw ~data:(header ^ ": " ^ value ^ crlf)
 
