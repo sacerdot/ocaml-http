@@ -64,7 +64,7 @@ val parse_headers: in_channel -> (string * string) list
    * attribute value>. See RFC 2965
    * @param raw_cookies: value of a "Cookies:" header
    * @return a list of pairs cookie_name * cookie_value
-   * @raise Malformed_cookies *)
+   * @raise Malformed_cookies if raw_cookies does not conform to RFC 2965 *)
 val parse_cookies: string -> (string * string) list
 
   (** given an input channel, reads from it a GET HTTP request and
