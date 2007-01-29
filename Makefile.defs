@@ -9,6 +9,7 @@ OCAMLFIND = ocamlfind
 OCAMLC = $(OCAMLFIND) ocamlc $(COMMON_FLAGS)
 OCAMLOPT = $(OCAMLFIND) ocamlopt $(COMMON_FLAGS)
 OCAMLDEP = $(OCAMLFIND) ocamldep $(COMMON_FLAGS)
+OCAMLLEX = ocamllex
 OCAMLDOC :=							\
 	ocamldoc -stars						\
 		$(shell $(OCAMLFIND) query -i-format unix)	\

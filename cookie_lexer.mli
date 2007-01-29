@@ -18,11 +18,12 @@
   USA
 *)
 
-(** Object Oriented representation of HTTP requests *)
+type cookie_token =
+  [ `QSTRING of string
+  | `SEP
+  | `TOKEN of string
+  | `ASSIGN
+  | `EOF ]
 
-open Http_types;;
-
-  (** OO representation of an HTTP request
-  @param inchan input channel from which parse an HTTP request *)
-class request: in_channel -> Http_types.request
+val token : Lexing.lexbuf -> cookie_token
 

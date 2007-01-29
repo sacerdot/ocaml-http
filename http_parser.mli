@@ -60,6 +60,13 @@ val parse_path: Neturl.url -> string
   @raise Invalid_header if a not well formed header is encountered *)
 val parse_headers: in_channel -> (string * string) list
 
+  (** parse a Cookie header, extracting an associative list <attribute name,
+   * attribute value>. See RFC 2965
+   * @param raw_cookies: value of a "Cookies:" header
+   * @return a list of pairs cookie_name * cookie_value
+   * @raise Malformed_cookies *)
+val parse_cookies: string -> (string * string) list
+
   (** given an input channel, reads from it a GET HTTP request and
   @return a pair <path, query_params> where path is a string representing the
   requested path and query_params is a list of pairs <name, value> (the GET

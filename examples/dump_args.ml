@@ -1,8 +1,7 @@
-
 (*
   OCaml HTTP - do it yourself (fully OCaml) HTTP daemon
 
-  Copyright (C) <2002-2004> Stefano Zacchiroli <zack@cs.unibo.it>
+  Copyright (C) <2002-2007> Stefano Zacchiroli <zack@cs.unibo.it>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -34,6 +33,16 @@ let callback req outchan =
     (sprintf "request ALL params = %s\n"
       (String.concat ";"
         (List.map (fun (h,v) -> String.concat "=" [h;v]) req#params))) ^
+    (sprintf "cookies = %s\n"
+      (match req#cookies with
+      | None ->
+          "NO COOKIES "
+          ^ (if req#hasHeader ~name:"cookie"
+             then "('Cookie:' header was '" ^ req#header ~name:"cookie" ^ "')"
+             else "(No 'Cookie:' header received)")
+      | Some cookies ->
+          (String.concat ";"
+            (List.map (fun (n,v) -> String.concat "=" [n;v]) cookies)))) ^
     (sprintf "request BODY = '%s'\n\n" req#body)
   in
   Http_daemon.respond ~code:(`Code 200) ~body: str outchan

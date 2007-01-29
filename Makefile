@@ -2,9 +2,20 @@ include Makefile.defs
 export SHELL=/bin/bash
 
 MODULES = \
-	http_constants http_types http_parser_sanity http_misc http_common \
-	http_tcp_server http_parser http_message http_request http_daemon \
-	http_response http_user_agent
+	http_constants \
+	http_types \
+	http_parser_sanity \
+	http_misc \
+	http_common \
+	http_tcp_server \
+	cookie_lexer \
+	http_parser \
+	http_message \
+	http_request \
+	http_daemon \
+	http_response \
+	http_user_agent \
+	$(NULL)
 
 THREADED_SRV = http_threaded_tcp_server
 MODULES_MT = $(patsubst http_tcp_server, mt/$(THREADED_SRV) http_tcp_server, $(MODULES))
@@ -55,6 +66,8 @@ include .depend
 depend:
 	$(OCAMLDEP) *.ml *.mli > .depend
 
+%.ml: %.mll
+	$(OCAMLLEX) $<
 %.cmi: %.mli
 	$(OCAMLC) -c $<
 %.cmo: %.ml %.cmi

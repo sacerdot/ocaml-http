@@ -1,8 +1,7 @@
-
 (*
   OCaml HTTP - do it yourself (fully OCaml) HTTP daemon
 
-  Copyright (C) <2002-2005> Stefano Zacchiroli <zack@cs.unibo.it>
+  Copyright (C) <2002-2007> Stefano Zacchiroli <zack@cs.unibo.it>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU Library General Public License as
@@ -180,6 +179,9 @@ exception Malformed_query_part of string * string
   (** invalid request URI encountered *)
 exception Malformed_request_URI of string
 
+  (** malformed cookies *)
+exception Malformed_cookies of string
+
   (** malformed request received *)
 exception Malformed_request of string
 
@@ -284,6 +286,8 @@ class type request = object
 
       (** @return the list of all parameter received via POST *)
     method params_POST: (string * string) list
+
+    method cookies: (string * string) list option
 
       (** @return authorization information, if given by the client *)
     method authorization: auth_info option

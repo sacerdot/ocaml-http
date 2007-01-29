@@ -2,8 +2,11 @@ ocaml-http (0.1.4-1) UNRELEASED; urgency=low
 
   * send internally generated headers as lowercase strings, for consistency
     with headers generated via setXXX methods
+  * added preliminary support for cookies (new "cookies" method added to an
+    http_request, cookies are parsed upon request creation if a "Cookie:"
+    header has been received)
 
- -- Stefano Zacchiroli <zack@debian.org>  Wed, 24 Jan 2007 10:09:12 +0100
+ -- Stefano Zacchiroli <zack@debian.org>  Mon, 29 Jan 2007 11:43:40 +0100
 
 ocaml-http (0.1.3-3) UNRELEASED; urgency=low
 

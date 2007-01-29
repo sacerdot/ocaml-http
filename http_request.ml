@@ -1,8 +1,7 @@
-
 (*
   OCaml HTTP - do it yourself (fully OCaml) HTTP daemon
 
-  Copyright (C) <2002-2005> Stefano Zacchiroli <zack@cs.unibo.it>
+  Copyright (C) <2002-2007> Stefano Zacchiroli <zack@cs.unibo.it>
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU Library General Public License as
@@ -75,6 +74,18 @@ class request ic =
         in
         (headers, body))
   in
+  let cookies =
+    try
+      let _hdr, raw_cookies =
+        List.find
+          (fun (hdr, _cookie) -> String.lowercase hdr = "cookie")
+          headers
+      in
+      Some (Http_parser.parse_cookies raw_cookies)
+    with
+    | Not_found -> None
+    | Malformed_cookies _ -> None
+  in
   let query_post_params =
     match meth with
     | `POST ->
@@ -121,6 +132,8 @@ class request ic =
     method params = params
     method params_GET = query_get_params
     method params_POST = query_post_params
+
+    method cookies = cookies
 
     method private fstLineToString =
       let method_string = string_of_method self#meth in

@@ -1,3 +1,5 @@
+cookie_lexer.cmo: cookie_lexer.cmi 
+cookie_lexer.cmx: cookie_lexer.cmi 
 http_common.cmo: http_types.cmi http_constants.cmi http_common.cmi 
 http_common.cmx: http_types.cmx http_constants.cmx http_common.cmi 
 http_constants.cmo: http_constants.cmi 
@@ -15,9 +17,9 @@ http_message.cmx: http_types.cmx http_parser_sanity.cmx http_misc.cmx \
 http_misc.cmo: http_types.cmi http_misc.cmi 
 http_misc.cmx: http_types.cmx http_misc.cmi 
 http_parser.cmo: http_types.cmi http_parser_sanity.cmi http_constants.cmi \
-    http_common.cmi http_parser.cmi 
+    http_common.cmi cookie_lexer.cmi http_parser.cmi 
 http_parser.cmx: http_types.cmx http_parser_sanity.cmx http_constants.cmx \
-    http_common.cmx http_parser.cmi 
+    http_common.cmx cookie_lexer.cmx http_parser.cmi 
 http_parser_sanity.cmo: http_types.cmi http_constants.cmi \
     http_parser_sanity.cmi 
 http_parser_sanity.cmx: http_types.cmx http_constants.cmx \

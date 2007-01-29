@@ -151,6 +151,28 @@ let parse_headers ic =
   in
   parse_headers' []
 
+let parse_cookies raw_cookies =
+  prerr_endline ("raw cookies: '" ^ raw_cookies ^ "'");
+  let tokens =
+    let lexbuf = Lexing.from_string raw_cookies in
+    let rec aux acc =
+      match Cookie_lexer.token lexbuf with
+      | `EOF -> acc
+      | token -> aux (token :: acc)
+    in
+    List.rev (aux [])
+  in
+  let rec aux = function
+    | [ `TOKEN n ; `ASSIGN ; (`TOKEN v | `QSTRING v) ] ->
+        prerr_endline ("found cookie " ^ n ^ " " ^ v);
+        [ (n,v) ]
+    | `TOKEN n :: `ASSIGN :: (`TOKEN v | `QSTRING v) :: `SEP :: tl ->
+        prerr_endline ("found cookie " ^ n ^ " " ^ v);
+        (n,v) :: aux tl
+    | _ -> raise (Malformed_cookies raw_cookies)
+  in
+  aux tokens
+
 let parse_request ic =
   let (meth, uri, version) = parse_request_fst_line ic in
   let path = parse_path uri in
