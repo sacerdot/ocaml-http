@@ -9,4 +9,4 @@ Index: /usr/share/doc/libhttp-ocaml-dev/html/index.html
 Files: /usr/share/doc/libhttp-ocaml-dev/html/*
 
 Format: PostScript
-Files: /usr/share/doc/libhttp-ocaml-dev/ocaml-http.ps.gz
+Files: /usr/share/doc/libhttp-ocaml-dev/latex/ocaml-http.ps.gz
