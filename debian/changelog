@@ -12,7 +12,7 @@ ocaml-http (0.1.4-1) experimental; urgency=low
     - build ocamldoc documentation at package build time
   * debian/control
     - add build-dep on camlp4, which is now in a separate package
-    - add build-dep for doc generation: graphviz, texlive-latex-base,
+    - add build-dep for doc generation: graphviz, texlive-latex-recommended,
       texlive-base-bin
   * debian/svn-deblayout
     - add repository layout information
