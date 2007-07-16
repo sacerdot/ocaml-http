@@ -2,7 +2,7 @@ Source: ocaml-http
 Section: devel
 Priority: optional
 Maintainer: Stefano Zacchiroli <zack@debian.org>
-Build-Depends: debhelper (>> 5.0.0), cdbs, ocaml-nox (>= 3.10.0), camlp4 (>= 3.10.0), ocaml-findlib (>= 1.1), libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 2.2)
+Build-Depends: debhelper (>> 5.0.0), cdbs, ocaml-nox (>= 3.10.0), camlp4 (>= 3.10.0), ocaml-findlib (>= 1.1), libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 2.2), graphviz
 Standards-Version: 3.7.2
 
 Package: libhttp-ocaml-dev
