@@ -1,8 +1,15 @@
-ocaml-http (0.1.4-2) UNRELEASED; urgency=low
+ocaml-http (0.1.4-2) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * change how the ocamldoc API reference is generated: no longer use upstream
+    Makefile, but rather rely on CDBS
+  * debian/control
+    - remove build-dep on texlive stuff and graphviz since now we only ship
+      HTML version of the API reference
+  * debian/docs, debian/doc-base
+    - file removed, the latter will be now automatically generated, the former
+      would only contain README and CDBS is smart enough to guess it
 
- -- Stefano Zacchiroli <zack@debian.org>  Mon, 16 Jul 2007 14:29:34 +0000
+ -- Stefano Zacchiroli <zack@debian.org>  Sun, 09 Sep 2007 12:34:07 +0200
 
 ocaml-http (0.1.4-1) experimental; urgency=low
 
