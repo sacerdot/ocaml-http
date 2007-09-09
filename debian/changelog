@@ -1,8 +1,9 @@
 ocaml-http (0.1.4-3) UNRELEASED; urgency=low
 
-  * NOT RELEASED YET
+  * debian/control
+    - add XS-Vcs-* fields pointing to HELM's repository and browser
 
- -- Stefano Zacchiroli <zack@debian.org>  Sun, 09 Sep 2007 12:36:41 +0200
+ -- Stefano Zacchiroli <zack@debian.org>  Sun, 09 Sep 2007 23:24:59 +0200
 
 ocaml-http (0.1.4-2) unstable; urgency=low
 
