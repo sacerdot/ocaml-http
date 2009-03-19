@@ -1,5 +1,5 @@
 Source: ocaml-http
-Section: devel
+Section: ocaml
 Priority: optional
 Maintainer: Stefano Zacchiroli <zack@debian.org>
 Build-Depends:
