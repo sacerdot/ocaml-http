@@ -14,6 +14,7 @@ Build-Depends:
 Standards-Version: 3.7.2
 Vcs-Svn: svn://mowgli.cs.unibo.it/trunk/helm/software/DEVEL/ocaml-http
 Vcs-Browser: http://helm.cs.unibo.it/websvn/listing.php?path=/trunk/helm/software/DEVEL/ocaml-http/
+Homepage: http://upsilon.cc/~zack/hacking/software/ocaml-http/
 
 Package: libhttp-ocaml-dev
 Architecture: any
