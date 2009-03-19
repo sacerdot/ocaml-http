@@ -1,4 +1,4 @@
-ocaml-http (0.1.4-3) UNRELEASED; urgency=low
+ocaml-http (0.1.4-3) unstable; urgency=low
 
   * rebuild with OCaml 3.11
   * debian/control
@@ -8,7 +8,7 @@ ocaml-http (0.1.4-3) UNRELEASED; urgency=low
   * debian/*.in: use more abstract substitution variable to avoid
     hard-coding assumption on stdlib location
 
- -- Stefano Zacchiroli <zack@debian.org>  Sun, 09 Sep 2007 23:24:59 +0200
+ -- Stefano Zacchiroli <zack@debian.org>  Thu, 19 Mar 2009 11:06:12 +0100
 
 ocaml-http (0.1.4-2) unstable; urgency=low
 
