@@ -1,7 +1,9 @@
 ocaml-http (0.1.4-3) UNRELEASED; urgency=low
 
+  * rebuild with OCaml 3.11
   * debian/control
-    - add XS-Vcs-* fields pointing to HELM's repository and browser
+    - refresh build-dependencies for the transition
+    - add Vcs-* fields pointing to HELM's repository and browser
 
  -- Stefano Zacchiroli <zack@debian.org>  Sun, 09 Sep 2007 23:24:59 +0200
 

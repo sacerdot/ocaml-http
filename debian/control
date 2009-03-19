@@ -2,14 +2,25 @@ Source: ocaml-http
 Section: devel
 Priority: optional
 Maintainer: Stefano Zacchiroli <zack@debian.org>
-Build-Depends: debhelper (>> 5.0.0), cdbs, ocaml-nox (>= 3.10.0), camlp4 (>= 3.10.0), ocaml-findlib (>= 1.1), libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 2.2)
+Build-Depends:
+ debhelper (>> 5.0.0),
+ cdbs,
+ dh-ocaml,
+ ocaml-nox,
+ camlp4,
+ ocaml-findlib,
+ libpcre-ocaml-dev,
+ libocamlnet-ocaml-dev (>= 2.2.9-6)
 Standards-Version: 3.7.2
-XS-Vcs-Svn: svn://mowgli.cs.unibo.it/trunk/helm/software/DEVEL/ocaml-http
-XS-Vcs-Browser: http://helm.cs.unibo.it/websvn/listing.php?path=/trunk/helm/software/DEVEL/ocaml-http/
+Vcs-Svn: svn://mowgli.cs.unibo.it/trunk/helm/software/DEVEL/ocaml-http
+Vcs-Browser: http://helm.cs.unibo.it/websvn/listing.php?path=/trunk/helm/software/DEVEL/ocaml-http/
 
 Package: libhttp-ocaml-dev
 Architecture: any
-Depends: ocaml-nox-${F:OCamlABI}, libpcre-ocaml-dev (>= 5.11.1), libocamlnet-ocaml-dev (>= 2.2)
+Depends:
+ ocaml-nox-${F:OCamlABI},
+ libpcre-ocaml-dev,
+ libocamlnet-ocaml-dev
 Description: OCaml library for writing HTTP servers
  OCaml HTTP is a library for the Objective Caml programming language,
  used to build simple HTTP servers, largely inspired to Perl's
