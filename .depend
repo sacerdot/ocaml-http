@@ -40,12 +40,17 @@ http_user_agent.cmo: http_parser.cmi http_misc.cmi http_common.cmi \
     http_user_agent.cmi 
 http_user_agent.cmx: http_parser.cmx http_misc.cmx http_common.cmx \
     http_user_agent.cmi 
+cookie_lexer.cmi: 
 http_common.cmi: http_types.cmi 
 http_constants.cmi: http_types.cmi 
 http_daemon.cmi: http_types.cmi 
 http_message.cmi: http_types.cmi 
+http_misc.cmi: 
 http_parser.cmi: http_types.cmi 
+http_parser_sanity.cmi: 
 http_request.cmi: http_types.cmi 
 http_response.cmi: http_types.cmi 
 http_tcp_server.cmi: http_types.cmi 
+http_threaded_tcp_server.cmi: 
+http_types.cmi: 
 http_user_agent.cmi: http_types.cmi 

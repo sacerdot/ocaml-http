@@ -4,6 +4,7 @@ ocaml-http (0.1.4-3) unstable; urgency=low
   * debian/control
     - refresh build-dependencies for the transition
     - add Vcs-* fields pointing to HELM's repository and browser
+    - add missing ${misc:Depends}, thanks lintian!
   * debian/rules: use ocaml.mk as a CDBS "rules" snippet
   * debian/*.in: use more abstract substitution variable to avoid
     hard-coding assumption on stdlib location

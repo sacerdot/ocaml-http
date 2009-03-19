@@ -20,7 +20,8 @@ Architecture: any
 Depends:
  ocaml-nox-${F:OCamlABI},
  libpcre-ocaml-dev,
- libocamlnet-ocaml-dev
+ libocamlnet-ocaml-dev,
+ ${misc:Depends}
 Description: OCaml library for writing HTTP servers
  OCaml HTTP is a library for the Objective Caml programming language,
  used to build simple HTTP servers, largely inspired to Perl's
