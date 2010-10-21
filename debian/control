@@ -1,7 +1,7 @@
 Source: ocaml-http
 Section: ocaml
 Priority: optional
-Maintainer: Stefano Zacchiroli <zack@debian.org>
+Maintainer: Arlen Cuss <celtic@sairyx.org>
 Build-Depends:
  debhelper (>> 5.0.0),
  cdbs,
@@ -12,9 +12,9 @@ Build-Depends:
  libpcre-ocaml-dev,
  libocamlnet-ocaml-dev (>= 2.2.9-6)
 Standards-Version: 3.7.2
-Vcs-Svn: svn://mowgli.cs.unibo.it/trunk/helm/software/DEVEL/ocaml-http
-Vcs-Browser: http://helm.cs.unibo.it/websvn/listing.php?path=/trunk/helm/software/DEVEL/ocaml-http/
-Homepage: http://upsilon.cc/~zack/hacking/software/ocaml-http/
+Vcs-Git: git://ssh.ocamlcore.org/gitroot/ocaml-http/ocaml-http.git
+Vcs-Browser: http://git.ocamlcore.org/cgi-bin/gitweb.cgi?p=ocaml-http/ocaml-http.git;a=summary
+Homepage: http://ocaml-http.forge.ocamlcore.org/
 
 Package: libhttp-ocaml-dev
 Architecture: any
@@ -25,14 +25,14 @@ Depends:
  ${misc:Depends}
 Description: OCaml library for writing HTTP servers
  OCaml HTTP is a library for the Objective Caml programming language,
- used to build simple HTTP servers, largely inspired to Perl's
+ used to build simple HTTP servers, largely inspired by Perl's
  HTTP::Daemon module.
  .
- In order to implement an HTTP servers the programmer has to provide a
+ In order to implement an HTTP server, the programmer has to provide a
  daemon specification which contains, among other parameters, a callback
- function invoked by OCaml HTTP on well formed HTTP requests received.
- HTTP responses could be sent over an out_channel connected with client
+ function invoked by OCaml HTTP on well-formed HTTP requests received.
+ HTTP responses can be sent over an out_channel connected with client
  socket, accessible from the callback.
  .
  The library contains also facility functions that helps in creating
- well formed HTTP responses and a tiny HTTP client.
+ well-formed HTTP responses and a tiny HTTP client.
