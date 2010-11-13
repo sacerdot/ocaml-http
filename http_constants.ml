@@ -25,7 +25,7 @@ let crlf = "\r\n" ;;
 
 let default_addr = "0.0.0.0"
 let default_auth = None
-let default_auto_close = false
+let default_auto_close = true
 let default_callback = fun _ _ -> ()
 let default_mode = `Fork
 let default_port = 80
