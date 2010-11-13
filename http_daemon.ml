@@ -61,12 +61,14 @@ let int_of_code = function
 let send_status_line ?(version = http_version) ~(code: status_code) outchan =
   send_status_line' ~version (int_of_code code) outchan
 
-  (* FIXME duplication of code between this and response#addBasicHeaders *)
+let get_basic_headers () =
+  ["Date", Http_misc.date_822 ();
+   "Server", server_string;
+   "Connection", "close"]
+
 let send_basic_headers ?(version = http_version) ~(code: status_code) outchan =
   send_status_line' ~version (int_of_code code) outchan;
-  send_headers
-    ~headers:["Date", Http_misc.date_822 (); "Server", server_string]
-    outchan
+  send_headers ~headers:(get_basic_headers ()) outchan
 
   (** internal: given a status code and an additional body return a string
   representing an HTML document that explains the meaning of given status code.

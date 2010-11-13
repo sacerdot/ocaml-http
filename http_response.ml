@@ -95,10 +95,8 @@ class response
     method isServerError = is_server_error _code
     method isError = is_error _code
 
-      (* FIXME duplication of code between this and send_basic_headers *)
     method addBasicHeaders =
-      self#addHeader ~name:"Date" ~value:(Http_misc.date_822 ());
-      self#addHeader ~name:"Server" ~value:server_string
+      List.iter (fun (n,v) -> self#addHeader n v) (get_basic_headers ())
 
     method contentType = self#header "Content-Type"
     method setContentType t = self#replaceHeader "Content-Type" t
@@ -110,6 +108,8 @@ class response
     method setExpires t = self#replaceHeader "Expires" t
     method server = self#header "Server"
     method setServer s = self#replaceHeader "Server" s
+    method connection = self#header "Connection"
+    method setConnection s = self#replaceHeader "Connection" c
 
     method private fstLineToString =
       sprintf "%s %d %s" self#getRealVersion self#code self#reason

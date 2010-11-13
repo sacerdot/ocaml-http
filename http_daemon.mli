@@ -36,8 +36,12 @@ val send_status_line:
   out_channel ->
     unit
 
-  (** like send_status_line but additionally will also send "Date" and "Server"
-  standard headers *)
+  (** returns the basic headers "Date", "Server" and "Connection" used in
+      send_basic_headers *)
+val get_basic_headers: unit -> (string * string) list
+
+  (** like send_status_line but additionally will also send "Date", "Server"
+    and "Connection" standard headers *)
 val send_basic_headers:
   ?version: Http_types.version -> code:Http_types.status_code ->
   out_channel ->
