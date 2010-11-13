@@ -109,7 +109,7 @@ class response
     method server = self#header "Server"
     method setServer s = self#replaceHeader "Server" s
     method connection = self#header "Connection"
-    method setConnection s = self#replaceHeader "Connection" c
+    method setConnection s = self#replaceHeader "Connection" s
 
     method private fstLineToString =
       sprintf "%s %d %s" self#getRealVersion self#code self#reason
