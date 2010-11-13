@@ -378,6 +378,11 @@ class type response = object
       (** set Server header value *)
     method setServer: string -> unit
 
+      (** @return Connection header value *)
+    method connection: string
+                                  
+      (** set Connection header value *)
+    method setConnection: string -> unit
   end
 
   (** {2 Daemon specification} *)

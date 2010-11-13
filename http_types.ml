@@ -193,6 +193,8 @@ class type response = object
     method setExpires: string -> unit
     method server: string
     method setServer: string -> unit
+    method connection: string
+    method setConnection: string -> unit
   end
 
 class type connection =
