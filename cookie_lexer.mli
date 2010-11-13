@@ -19,10 +19,8 @@
 *)
 
 type cookie_token =
-  [ `QSTRING of string
-  | `SEP
-  | `TOKEN of string
-  | `ASSIGN
+  [ `SEP
+  | `ASSIGNMENT of string * string
   | `EOF ]
 
 val token : Lexing.lexbuf -> cookie_token

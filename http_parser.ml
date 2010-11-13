@@ -152,7 +152,6 @@ let parse_headers ic =
   parse_headers' []
 
 let parse_cookies raw_cookies =
-  prerr_endline ("raw cookies: '" ^ raw_cookies ^ "'");
   let tokens =
     let lexbuf = Lexing.from_string raw_cookies in
     let rec aux acc =
@@ -163,13 +162,14 @@ let parse_cookies raw_cookies =
     List.rev (aux [])
   in
   let rec aux = function
-    | [ `TOKEN n ; `ASSIGN ; (`TOKEN v | `QSTRING v) ] ->
+    | [ `ASSIGNMENT (n,v) ] ->
         prerr_endline ("found cookie " ^ n ^ " " ^ v);
         [ (n,v) ]
-    | `TOKEN n :: `ASSIGN :: (`TOKEN v | `QSTRING v) :: `SEP :: tl ->
+    | `ASSIGNMENT (n,v) :: `SEP :: tl ->
         prerr_endline ("found cookie " ^ n ^ " " ^ v);
         (n,v) :: aux tl
-    | _ -> raise (Malformed_cookies raw_cookies)
+    | _ -> prerr_endline ("failed to read raw cookies: \"" ^ raw_cookies ^ "\"");
+           raise (Malformed_cookies raw_cookies)
   in
   aux tokens
 
