@@ -163,13 +163,9 @@ let parse_cookies raw_cookies =
     List.rev (aux [])
   in
   let rec aux = function
-    | [ `ASSIGNMENT (n,v) ] ->
-        prerr_endline ("found cookie " ^ n ^ " " ^ v);
-        [ (n,v) ]
-    | `ASSIGNMENT (n,v) :: `SEP :: tl ->
-        prerr_endline ("found cookie " ^ n ^ " " ^ v);
-        (n,v) :: aux tl
-    | _ -> prerr_endline ("failed to read raw cookies: \"" ^ raw_cookies ^ "\"");
+    | [ `ASSIGNMENT (n,v) ]           -> [ (n,v) ]
+    | `ASSIGNMENT (n,v) :: `SEP :: tl -> (n,v) :: aux tl
+    | _ -> prerr_endline ("failed to read raw cookies: '" ^ raw_cookies ^ "'");
            raise (Malformed_cookies raw_cookies)
   in
   aux tokens
