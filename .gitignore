@@ -2,3 +2,5 @@ doc
 *.cma
 *.cmo
 *.cmi
+ocamlinit-stamp
+META
