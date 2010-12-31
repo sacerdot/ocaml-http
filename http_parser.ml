@@ -35,7 +35,7 @@ let url_decode url = Netencoding.Url.decode ~plus:true url
 let split_query_params query =
   let bindings = Pcre.split ~rex:bindings_sep query in
   match bindings with
-  | [] -> raise (Malformed_query query)
+  | [] -> []
   | bindings ->
       List.map
         (fun binding ->
