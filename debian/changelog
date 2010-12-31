@@ -1,3 +1,11 @@
+ocaml-http (0.1.5-1) unstable; urgency=low
+
+  * better cookie parsing (as seen in real life!)
+  * auto-close connections by default
+  * don't die on empty query strings
+
+ -- Arlen Cuss <celtic@sairyx.org>  Fri, 31 Dec 2010 12:58:55 +1100
+
 ocaml-http (0.1.4-3) unstable; urgency=low
 
   * rebuild with OCaml 3.11
