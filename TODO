@@ -1,3 +1,0 @@
-- support for HTTPS
-- keepalive support (need to hook in with #connection / #setConnection in Http_response)
-- support for HEAD
