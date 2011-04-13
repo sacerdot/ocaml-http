@@ -32,6 +32,7 @@ type version =
 type meth =
   [ `GET
   | `POST
+  | `HEAD
   ]
 
   (** Daemon behaviour wrt request handling. `Single mode use a single process

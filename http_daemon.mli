@@ -61,6 +61,16 @@ val send_file: ?name:string -> ?file:in_channel -> out_channel -> unit
   (** send a file through an out_channel *)
 val send_file: src:Http_types.file_source -> out_channel -> unit
 
+  (** high level response function, specific to HEAD responses,
+      respond on outchan sending: basic headers, headers provided
+      via 'headers' argument, Content-length if provided.  Default response
+      status is 200, default response HTTP version is Http_common.http_version *)
+val respond_head:
+  ?content_length:int -> ?headers:(string * string) list ->
+  ?version:Http_types.version -> ?code:Http_types.status_code ->
+  out_channel ->
+    unit
+
   (** high level response function, respond on outchan sending: basic headers
   (including Content-Length computed using 'body' argument), headers probided
   via 'headers' argument, body given via 'body' argument.  Default response

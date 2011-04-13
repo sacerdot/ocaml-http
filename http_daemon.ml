@@ -89,6 +89,15 @@ let foo_body code body =
 let send_foo_body code body = send_raw ~data:(foo_body code body)
 
   (* Warning: keep default values in sync with Http_response.response class *)
+let respond_head ?content_length ?(headers = []) ?version ?(code = `Code 200) outchan =
+  send_basic_headers ?version ~code outchan;
+  send_headers ~headers outchan;
+  (match content_length with
+  | None -> ()
+  | Some amount -> send_header "Content-Length" (string_of_int amount) outchan);
+  send_CRLF outchan
+
+  (* Warning: keep default values in sync with Http_response.response class *)
 let respond ?(body = "") ?(headers = []) ?version ?(code = `Code 200) outchan =
   send_basic_headers ?version ~code outchan;
   send_headers ~headers outchan;

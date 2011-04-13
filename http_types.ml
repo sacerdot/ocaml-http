@@ -21,7 +21,7 @@
 (** Type definitions *)
 
 type version = [ `HTTP_1_0 | `HTTP_1_1 ]
-type meth = [ `GET | `POST ]
+type meth = [ `GET | `POST | `HEAD ]
 type daemon_mode = [ `Single | `Fork | `Thread ]
 
 type tcp_server =
