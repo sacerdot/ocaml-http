@@ -43,11 +43,13 @@ let string_of_method = function
   | `GET -> "GET"
   | `POST -> "POST"
   | `HEAD -> "HEAD"
+  | `PUT -> "PUT"
 
 let method_of_string = function
   | "GET" -> `GET
   | "POST" -> `POST
   | "HEAD" -> `HEAD
+  | "PUT" -> `PUT
   | invalid_method -> raise (Invalid_HTTP_method invalid_method)
 
 let status_of_code = function

@@ -53,7 +53,8 @@ class request ic =
         let body =
             (* TODO fallback on size defined in Transfer-Encoding if
               Content-Length isn't defined *)
-          if meth = `POST then
+          match meth with
+          | `POST | `PUT ->
             Buffer.contents
               (try  (* read only Content-Length bytes *)
                 let limit_raw =
@@ -69,7 +70,7 @@ class request ic =
                 in
                 Http_misc.buf_of_inchan ~limit ic
               with Fallback -> Http_misc.buf_of_inchan ic)  (* read until EOF *)
-          else  (* TODO empty body for methods other than POST, is ok? *)
+          | _ ->
             ""
         in
         (headers, body))
@@ -120,6 +121,7 @@ class request ic =
         | None -> Hashtbl.find params_tbl name
         | Some `GET -> List.assoc name query_get_params
         | Some `HEAD -> List.assoc name query_get_params
+        | Some `PUT -> List.assoc name query_get_params
         | Some `POST -> List.assoc name query_post_params)
       with Not_found ->
         (match default with
@@ -130,6 +132,7 @@ class request ic =
       | None -> List.rev (Hashtbl.find_all params_tbl name)
       | Some `GET -> Http_misc.list_assoc_all name query_get_params
       | Some `HEAD -> Http_misc.list_assoc_all name query_get_params
+      | Some `PUT -> Http_misc.list_assoc_all name query_get_params
       | Some `POST -> Http_misc.list_assoc_all name query_post_params)
     method params = params
     method params_GET = query_get_params
