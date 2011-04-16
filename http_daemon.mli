@@ -81,6 +81,18 @@ val respond:
   out_channel ->
     unit
 
+  (** high level response function, specific to TRACE responses,
+      respond on outchan sending: basic headers, headers provided
+      via 'headers' argument, body given via 'req' argument. The
+      supplied request will be sent back to the client.  Default response
+      status is 200, default response HTTP version is Http_common.http_version *)
+val respond_trace:
+  ?req:Http_types.request -> 
+  ?headers:(string * string) list ->
+  ?version:Http_types.version -> ?code:Http_types.status_code ->
+  out_channel ->
+    unit
+
   (** send a 404 (not found) HTTP response *)
 val respond_not_found:
   url:string -> ?version: Http_types.version -> out_channel -> unit

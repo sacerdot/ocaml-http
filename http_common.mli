@@ -52,6 +52,9 @@ val string_of_method: meth -> string
   method *)
 val method_of_string: string -> meth
 
+  (** pretty print an HTTP request *)
+val string_of_request: Http_types.request -> string
+
   (** converts an integer HTTP status to the corresponding status value
   @raise Invalid_code if given integer isn't a valid HTTP status code *)
 val status_of_code: int -> status

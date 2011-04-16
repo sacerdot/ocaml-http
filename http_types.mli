@@ -36,6 +36,7 @@ type meth =
   | `PUT
   | `DELETE
   | `OPTIONS
+  | `TRACE
   ]
 
   (** Daemon behaviour wrt request handling. `Single mode use a single process

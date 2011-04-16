@@ -46,6 +46,7 @@ let string_of_method = function
   | `PUT -> "PUT"
   | `DELETE -> "DELETE"
   | `OPTIONS -> "OPTIONS"
+  | `TRACE -> "TRACE"
 
 let method_of_string = function
   | "GET" -> `GET
@@ -54,7 +55,30 @@ let method_of_string = function
   | "PUT" -> `PUT
   | "DELETE" -> `DELETE
   | "OPTIONS" -> `OPTIONS
+  | "TRACE" -> `TRACE
   | invalid_method -> raise (Invalid_HTTP_method invalid_method)
+
+let string_of_request req = 
+  let buffer = Buffer.create 1024 in
+  Buffer.add_string buffer (string_of_method req#meth);
+  Buffer.add_char buffer ' ';
+  Buffer.add_string buffer req#uri;
+  Buffer.add_char buffer ' ';
+  (match req#version with
+  | Some v -> Buffer.add_string buffer (string_of_version v)
+  | None -> ());
+  Buffer.add_string buffer "\r\n";
+  List.iter
+    (fun (param_name, param_value) ->
+      Buffer.add_string buffer param_name;
+      Buffer.add_string buffer ": ";
+      Buffer.add_string buffer param_value;
+      Buffer.add_string buffer "\r\n";
+    )
+    req#headers;
+  Buffer.add_string buffer "\r\n";
+  Buffer.add_string buffer req#body;
+  Buffer.contents buffer
 
 let status_of_code = function
   | 100 -> `Informational `Continue

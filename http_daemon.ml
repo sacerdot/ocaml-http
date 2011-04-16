@@ -105,6 +105,13 @@ let respond ?(body = "") ?(headers = []) ?version ?(code = `Code 200) outchan =
   send_CRLF outchan;
   send_raw ~data:body outchan
 
+let respond_trace ?req ?(headers = []) ?version ?(code = `Code 200) outchan =
+  let body = match req with
+    | Some r -> string_of_request r
+    | None -> ""
+  in
+  respond ~body ~headers ?version ~code outchan
+
   (** internal: low level for respond_redirect, respond_error, ...
   This function send a status line corresponding to a given code, some basic
   headers, the additional headers (if given) and an HTML page containing the

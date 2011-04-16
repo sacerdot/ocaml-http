@@ -54,7 +54,7 @@ class request ic =
             (* TODO fallback on size defined in Transfer-Encoding if
               Content-Length isn't defined *)
           match meth with
-          | `POST | `PUT ->
+          | `POST | `PUT | `TRACE ->
             Buffer.contents
               (try  (* read only Content-Length bytes *)
                 let limit_raw =
@@ -124,6 +124,7 @@ class request ic =
         | Some `PUT -> List.assoc name query_get_params
         | Some `DELETE -> List.assoc name query_get_params
         | Some `OPTIONS -> List.assoc name query_get_params
+        | Some `TRACE -> List.assoc name query_get_params
         | Some `POST -> List.assoc name query_post_params)
       with Not_found ->
         (match default with
@@ -137,6 +138,7 @@ class request ic =
       | Some `PUT -> Http_misc.list_assoc_all name query_get_params
       | Some `DELETE -> Http_misc.list_assoc_all name query_get_params
       | Some `OPTIONS -> Http_misc.list_assoc_all name query_get_params
+      | Some `TRACE -> Http_misc.list_assoc_all name query_get_params
       | Some `POST -> Http_misc.list_assoc_all name query_post_params)
     method params = params
     method params_GET = query_get_params
