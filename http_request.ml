@@ -122,6 +122,8 @@ class request ic =
         | Some `GET -> List.assoc name query_get_params
         | Some `HEAD -> List.assoc name query_get_params
         | Some `PUT -> List.assoc name query_get_params
+        | Some `DELETE -> List.assoc name query_get_params
+        | Some `OPTIONS -> List.assoc name query_get_params
         | Some `POST -> List.assoc name query_post_params)
       with Not_found ->
         (match default with
@@ -133,6 +135,8 @@ class request ic =
       | Some `GET -> Http_misc.list_assoc_all name query_get_params
       | Some `HEAD -> Http_misc.list_assoc_all name query_get_params
       | Some `PUT -> Http_misc.list_assoc_all name query_get_params
+      | Some `DELETE -> Http_misc.list_assoc_all name query_get_params
+      | Some `OPTIONS -> Http_misc.list_assoc_all name query_get_params
       | Some `POST -> Http_misc.list_assoc_all name query_post_params)
     method params = params
     method params_GET = query_get_params

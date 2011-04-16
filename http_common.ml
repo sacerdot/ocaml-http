@@ -44,12 +44,16 @@ let string_of_method = function
   | `POST -> "POST"
   | `HEAD -> "HEAD"
   | `PUT -> "PUT"
+  | `DELETE -> "DELETE"
+  | `OPTIONS -> "OPTIONS"
 
 let method_of_string = function
   | "GET" -> `GET
   | "POST" -> `POST
   | "HEAD" -> `HEAD
   | "PUT" -> `PUT
+  | "DELETE" -> `DELETE
+  | "OPTIONS" -> `OPTIONS
   | invalid_method -> raise (Invalid_HTTP_method invalid_method)
 
 let status_of_code = function
