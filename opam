@@ -3,6 +3,7 @@ version: "0.1.6"
 maintainer: "claudio.sacerdoticoen@unibo.it"
 bug-reports: "https://github.com/sacerdot/ocaml-http/issues"
 homepage: "https://github.com/sacerdot/ocaml-http"
+authors: "Stefano Zacchiroli"
 build: [
   [make "all"]
   [make "opt"]
