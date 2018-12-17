@@ -148,3 +148,15 @@ install: META
 	all opt world all_non_mt all_mt opt_non_mt opt_mt	\
 	examples examples.opt depend clean distclean dist	\
 	install meta doc deb distreal distrm
+
+VERSION = 0.1.6
+
+release:
+	git tag -a v$(VERSION) -m "Version $(VERSION)."
+	git push origin v$(VERSION)
+	opam publish
+	#opam publish prepare $(NAME_VERSION) $(ARCHIVE)
+	#cp -t $(NAME_VERSION) descr
+	#grep -Ev '^(name|version):' opam >$(NAME_VERSION)/opam
+	#opam publish submit $(NAME_VERSION)
+	#rm -rf $(NAME_VERSION)
