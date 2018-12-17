@@ -73,7 +73,7 @@ let head url =
 
 let get_iter ?(head_callback = fun _ _ -> ()) callback url =
   let (inchan, outchan) = submit_request `GET url in
-  let buf = String.create tcp_bufsiz in
+  let buf = Bytes.create tcp_bufsiz in
   let (_, status) = Http_parser.parse_response_fst_line inchan in
   (match code_of_status status with
   | 200 -> ()
@@ -87,7 +87,7 @@ let get_iter ?(head_callback = fun _ _ -> ()) callback url =
       | bytes when bytes = tcp_bufsiz ->  (* buffer full, no need to slice it *)
           callback buf
       | bytes when bytes < tcp_bufsiz ->  (* buffer not full, slice it *)
-          callback (String.sub buf 0 bytes)
+          callback (Bytes.sub buf 0 bytes)
       | _ -> (* ( bytes < 0 ) || ( bytes > tcp_bufsiz ) *)
           assert false
     done
@@ -96,6 +96,6 @@ let get_iter ?(head_callback = fun _ _ -> ()) callback url =
 
 let get ?head_callback url =
   let buf = Buffer.create 10240 in
-  get_iter ?head_callback (Buffer.add_string buf) url;
+  get_iter ?head_callback (Buffer.add_bytes buf) url;
   Buffer.contents buf
 

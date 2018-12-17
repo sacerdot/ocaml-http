@@ -43,7 +43,7 @@ val get:
    * returning it as a string *)
 val get_iter:
   ?head_callback:(status -> (string * string) list -> unit) ->
-  (string -> unit) -> string ->
+  (bytes -> unit) -> string ->
     unit
 
   (** @param url an HTTP url

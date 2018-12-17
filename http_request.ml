@@ -47,7 +47,7 @@ class request ic =
         let headers =
           List.map  (* lowercase header names to ease lookups before having a
                     request object *)
-            (fun (h,v) -> (String.lowercase h, v))
+            (fun (h,v) -> (String.lowercase_ascii h, v))
             (Http_parser.parse_headers ic) (* trailing \r\n consumed! *)
         in
         let body =
@@ -79,7 +79,7 @@ class request ic =
     try
       let _hdr, raw_cookies =
         List.find
-          (fun (hdr, _cookie) -> String.lowercase hdr = "cookie")
+          (fun (hdr, _cookie) -> String.lowercase_ascii hdr = "cookie")
           headers
       in
       Some (Http_parser.parse_cookies raw_cookies)

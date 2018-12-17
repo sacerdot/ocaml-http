@@ -36,7 +36,7 @@ let send_raw ~data outchan =
 let send_CRLF = send_raw ~data:crlf
 
 let send_header ~header ~value =
-  let header = String.lowercase header in
+  let header = String.lowercase_ascii header in
   Http_parser_sanity.heal_header (header, value);
   send_raw ~data:(header ^ ": " ^ value ^ crlf)
 
@@ -158,7 +158,7 @@ let respond_unauthorized ?version ?(realm = server_string) outchan =
 
 let send_file ~src outchan =
   let buflen = 1024 in
-  let buf = String.make buflen ' ' in
+  let buf = Bytes.make buflen ' ' in
 
   let (file, cleanup) =
     match src with
@@ -470,7 +470,7 @@ let daemon_spec
   ?(timeout = default_timeout)
   ()
 =
-  { default_spec with
+  {
       address = address;
       auth = auth;
       auto_close = auto_close;

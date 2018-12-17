@@ -64,26 +64,26 @@ class virtual message ~body ~headers ~version ~clisockaddr ~srvsockaddr =
     method addBodyBuf b = Buffer.add_buffer _contentsBuf b
 
     method addHeader ~name ~value =
-      let name = String.lowercase name in
+      let name = String.lowercase_ascii name in
       Http_parser_sanity.heal_header (name, value);
       Hashtbl.add _headers name value
     method addHeaders =
       List.iter (fun (name, value) -> self#addHeader ~name ~value)
     method replaceHeader ~name ~value =
-      let name = String.lowercase name in
+      let name = String.lowercase_ascii name in
       Http_parser_sanity.heal_header (name, value);
       Hashtbl.replace _headers name value
     method replaceHeaders =
       List.iter (fun (name, value) -> self#replaceHeader ~name ~value)
     method removeHeader ~name =
-      let name = String.lowercase name in
+      let name = String.lowercase_ascii name in
       hashtbl_remove_all _headers name
     method hasHeader ~name =
-      let name = String.lowercase name in
+      let name = String.lowercase_ascii name in
       Hashtbl.mem _headers name
     method header ~name =
       if not (self#hasHeader name) then raise (Header_not_found name);
-      let name = String.lowercase name in
+      let name = String.lowercase_ascii name in
       String.concat ", " (List.rev (Hashtbl.find_all _headers name))
     method headers =
       List.rev

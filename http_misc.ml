@@ -119,19 +119,19 @@ let sockname_of_in_channel inchan =
 
 let buf_of_inchan ?limit ic =
   let buf = Buffer.create 10240 in
-  let tmp = String.make 1024 '\000' in
+  let tmp = Bytes.make 1024 '\000' in
   let rec buf_of_inchan' limit =
     (match limit with
     | None ->
         let bytes = input ic tmp 0 1024 in
         if bytes > 0 then begin
-          Buffer.add_substring buf tmp 0 bytes;
+          Buffer.add_subbytes buf tmp 0 bytes;
           buf_of_inchan' None
         end
     | Some lim -> (* TODO what about using a single really_input call? *)
         let bytes = input ic tmp 0 (min lim 1024) in
         if bytes > 0 then begin
-          Buffer.add_substring buf tmp 0 bytes;
+          Buffer.add_subbytes buf tmp 0 bytes;
           buf_of_inchan' (Some (lim - bytes))
         end)
   in
