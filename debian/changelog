@@ -1,3 +1,9 @@
+ocaml-http (0.1.5-2) unstable; urgency=low
+
+  * ported to ocaml > 3.10
+
+ -- Claudio Sacerdoti Coen <claudio.sacerdoticoen@unibo.it>  Mon, 17 Dec 2018 21:47:55 +1100
+
 ocaml-http (0.1.5-1) unstable; urgency=low
 
   * better cookie parsing (as seen in real life!)
