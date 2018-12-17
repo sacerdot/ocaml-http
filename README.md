@@ -1,6 +1,3 @@
-OCaml HTTP is a simple OCaml library for creating HTTP daemons, it is largely
-inspired to the Perl's HTTP:: modules family.
-
 OCaml HTTP
 ==========
 do it yourself (OCaml) HTTP daemon
