@@ -4,12 +4,13 @@ maintainer: "claudio.sacerdoticoen@unibo.it"
 bug-reports: "https://github.com/sacerdot/ocaml-http/issues"
 homepage: "https://github.com/sacerdot/ocaml-http"
 authors: "Stefano Zacchiroli"
+dev-repo: "git+https://github.com/sacerdot/ocaml-http.git"
 build: [
   [make "all"]
   [make "opt"]
 ]
 remove: [["ocamlfind" "remove" "http"]]
-depends: ["ocamlfind" {build} "ocamlnet" "pcre"]
+depends: ["ocaml" {>="4.03.0"} "ocamlfind" {build} "ocamlnet" "pcre"]
 install: [make "install"]
 synopsis: "Library freely inspired from Perl's HTTP::Daemon module"
 flags: light-uninstall
