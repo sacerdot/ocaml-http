@@ -1,0 +1,13 @@
+opam-version: "2.0"
+version: "0.1.6"
+maintainer: "claudio.sacerdoticoen@unibo.it"
+bug-reports: "https://github.com/sacerdot/ocaml-http/issues"
+homepage: "https://github.com/sacerdot/ocaml-http"
+build: [
+  [make "all"]
+  [make "opt"]
+]
+remove: [["ocamlfind" "remove" "http"]]
+depends: ["ocamlfind" "camlp4" "ocamlnet" "pcre"]
+install: [make "install"]
+synopsis: "Library freely inspired from Perl's HTTP::Daemon module"

@@ -1,4 +1,4 @@
-ocaml-http (0.1.5-2) unstable; urgency=low
+ocaml-http (0.1.6-1) unstable; urgency=low
 
   * ported to ocaml > 3.10
 
