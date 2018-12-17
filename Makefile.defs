@@ -3,7 +3,7 @@ DISTVERSION = $(shell dpkg-parsechangelog | egrep '^Version: ' | sed 's/^Version
 
 DEBUG_FLAGS =
 REQUIRES = unix str pcre netstring
-COMMON_FLAGS = $(DEBUG_FLAGS) -pp camlp4o -package "$(REQUIRES)"
+COMMON_FLAGS = $(DEBUG_FLAGS) -package "$(REQUIRES)"
 THREADS_FLAGS = -package threads -thread
 OCAMLFIND = ocamlfind
 OCAMLC = $(OCAMLFIND) ocamlc $(COMMON_FLAGS)
