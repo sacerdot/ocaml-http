@@ -9,6 +9,7 @@ build: [
   [make "opt"]
 ]
 remove: [["ocamlfind" "remove" "http"]]
-depends: ["ocamlfind" "camlp4" "ocamlnet" "pcre"]
+depends: ["ocamlfind" {build} "ocamlnet" "pcre"]
 install: [make "install"]
 synopsis: "Library freely inspired from Perl's HTTP::Daemon module"
+flags: light-uninstall
