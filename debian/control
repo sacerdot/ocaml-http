@@ -12,9 +12,6 @@ Build-Depends:
  libpcre-ocaml-dev,
  libocamlnet-ocaml-dev (>= 2.2.9-6)
 Standards-Version: 3.7.2
-Vcs-Git: git://ssh.ocamlcore.org/gitroot/ocaml-http/ocaml-http.git
-Vcs-Browser: http://git.ocamlcore.org/cgi-bin/gitweb.cgi?p=ocaml-http/ocaml-http.git;a=summary
-Homepage: http://ocaml-http.forge.ocamlcore.org/
 
 Package: libhttp-ocaml-dev
 Architecture: any
