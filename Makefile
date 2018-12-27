@@ -139,6 +139,7 @@ deb: docclean distreal
 	(cd $(DISTDIR)/ && debuild)
 	rm -rf $(DISTDIR)/
 install: META
+	mkdir -p $(DESTDIR)
 	$(OCAMLFIND) install -destdir $(DESTDIR) $(PKGNAME)	\
 		$(patsubst %, %.mli, $(PUBLIC_MODULES))	\
 		$(patsubst %, %.cmi, $(PUBLIC_MODULES))	\
